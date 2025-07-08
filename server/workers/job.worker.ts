@@ -1,18 +1,7 @@
 import { Worker } from "bullmq";
-import IORedis from "ioredis";
 import jobsModel from "../models/jobs.model";
 import importLogsModel from "../models/import.logs.model";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const connection = new IORedis({
-  host: process.env.REDIS_HOST,
-  port: parseInt(process.env.REDIS_PORT || "6379"),
-  username: process.env.REDIS_USERNAME,
-  password: process.env.REDIS_PASSWORD,
-  maxRetriesPerRequest: null,
-});
+import connectionRedis from "../config/redis";
 
 const stats = {
   totalFetched: 0,
@@ -79,7 +68,7 @@ export const worker = new Worker(
       stats.failedJobs++;
     }
   },
-  { connection }
+  { connection: connectionRedis }
 );
 
 // Todo: Save stats every 30 seconds to the database
