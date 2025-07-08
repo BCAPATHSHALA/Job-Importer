@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "bullmq": "^5.56.2",
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "ioredis": "^5.6.1",
+    "mongoose": "^8.16.2",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^24.0.10",
+    "@types/xml2js": "^0.4.14",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
