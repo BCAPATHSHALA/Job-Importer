@@ -23,7 +23,7 @@ const stats = {
   errorMessages: [] as string[],
 };
 
-// Todo: Create a new worker instance for the "job-import" queue
+// Todo: Create a new worker instance for the "job-import" queue and fetch jobs from the queue and save them to the database
 export const worker = new Worker(
   "job-import",
   async (job) => {
