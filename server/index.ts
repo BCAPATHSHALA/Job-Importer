@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import { connectDB } from "./config/db";
 import "./config/cronJob";
 import "./workers/job.worker";
@@ -12,6 +13,15 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON data from req.body
 app.use(express.json({ limit: "50kb" }));
+
+// Middleware to enable CORS
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET"],
+  })
+);
 
 // Routes
 app.use("/api/jobs", jobRoutes);
