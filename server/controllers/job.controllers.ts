@@ -11,4 +11,18 @@ const getAllJobs = async (_: Request, res: Response) => {
   }
 };
 
-export { getAllJobs };
+// Function to get a specific job by ID
+const getJobById = async (req: Request, res: Response) => {
+  try {
+    const job: IJob | null = await jobsModel.findById(req.params.id);
+    if (job) {
+      res.json(job);
+    } else {
+      res.status(404).json({ message: "Job not found" });
+    }
+  } catch (error: unknown) {
+    res.status(500).json({ message: "Error fetching job" });
+  }
+};
+
+export { getAllJobs, getJobById };
