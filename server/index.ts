@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import "./config/cronJob";
 import "./workers/job.worker";
+import jobRoutes from "./routes/job.routes";
+import logRoutes from "./routes/log.routes";
 
 dotenv.config({ path: ".env" });
 const app = express();
@@ -10,6 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON data from req.body
 app.use(express.json({ limit: "50kb" }));
+
+// Routes
+app.use("/api/jobs", jobRoutes);
+app.use("/api/logs", logRoutes);
 
 app.get("/", (_, res) => {
   res.send("Job Importer Running");
